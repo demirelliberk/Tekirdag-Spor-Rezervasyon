@@ -1,0 +1,10 @@
+kullaniciId,adSoyad,email,sifre,rol
+1,Dilan Admin,dilan@mail.com,1234,ADMIN
+2,Berk Kullanici,berk@mail.com,asdf,USER
+3,Zeynep Kullanici,zeynep@mail.com,qwer,USER
+4,Safa Kullanici,safa@mail.com,zxcv,USER
+5,Eray Gülten,eraygulten04@gmail.com,Esekberk,USER
+6,Eray Gülten,eray@mail.com,123456,USER
+7,Merve Tatvan,merve@mail.com,123456,USER
+8,Seçkin Kasım,seckin@mail.com,123456,USER
+9,Aleyna,aleynadilanozturk41@gmail.com,12345678,USER

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tekirdağ'daki tüm spor alanlarına kolayca rezervasyon yapın. Futbol sahaları, tenis kortları, yüzme havuzları ve daha fazlası.">
+    <title>Tekirdağ Spor Rezervasyon Sistemi - Giriş</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header" id="main-header">
+        <div class="header-inner">
+            <a href="#" class="logo" id="logo-link">
+                <img src="logo.png" alt="Tekirdağ Spor Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">TEKİRDAĞ SPOR</span>
+                    <span class="logo-subtitle">REZERVASYON SİSTEMİ</span>
+                </div>
+            </a>
+            <nav class="nav" id="main-nav">
+                <a href="#" class="nav-link active" id="nav-home">Ana Sayfa</a>
+                <a href="#" class="nav-link" id="nav-facilities">Tesisler</a>
+                <a href="#" class="nav-link" id="nav-services">Hizmetler</a>
+                <a href="#" class="nav-link" id="nav-contact">İletişim</a>
+                <a href="#" class="nav-btn" id="nav-register-btn">Kayıt Ol</a>
+            </nav>
+            <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Menü">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero" id="hero-section">
+        <div class="hero-bg-overlay"></div>
+
+        <div class="hero-content">
+            <!-- Left Side -->
+            <div class="hero-left" id="hero-info">
+                <h1 class="hero-title">
+                    TEKİRDAĞ'DAKİ TÜM SPOR<br>
+                    ALANLARINA KOLAYCA<br>
+                    REZERVASYON YAPIN!
+                </h1>
+                <p class="hero-desc">
+                    Futbol sahaları, tenis kortları, yüzme havuzları, kapalı salonlar<br>
+                    ve daha fazlası... Hemen Üye Olun!
+                </p>
+
+                <!-- Feature Cards -->
+                <div class="features" id="features-section">
+                    <div class="feature-card" id="feature-discover">
+                        <div class="feature-icon">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+                        <h3>1. Keşfet:</h3>
+                        <p>Çevrenizdeki tesisleri ve<br>saatleri incele</p>
+                    </div>
+                    <div class="feature-card" id="feature-reserve">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>2. Rezervasyon:</h3>
+                        <p>Uygun saatleri seç,<br>anında yerini ayırt</p>
+                    </div>
+                    <div class="feature-card" id="feature-play">
+                        <div class="feature-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3>3. Oyna:</h3>
+                        <p>Hazır mısın? Sahaya çık<br>ve oyunun keyfini çıkar</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Auth Panel -->
+            <div class="auth-panel" id="auth-panel">
+                <!-- Tab Switcher -->
+                <div class="auth-tabs" id="auth-tabs">
+                    <button class="auth-tab active" id="tab-login" data-tab="login">GİRİŞ YAP</button>
+                    <button class="auth-tab" id="tab-register" data-tab="register">KAYIT OL</button>
+                </div>
+
+                <!-- Login Form -->
+                <form class="auth-form" id="login-form">
+                    <p class="auth-subtitle">Hesabınıza giriş yapın</p>
+                    <div class="input-group" id="login-email-group">
+                        <input type="text" id="login-email" placeholder="E-Posta Adresi" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div class="input-group" id="login-password-group">
+                        <input type="password" id="login-password" placeholder="Şifre" required>
+                        <button type="button" class="password-toggle" id="login-password-toggle" aria-label="Şifreyi göster">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
+                    </div>
+                    <a href="#" class="forgot-link" id="forgot-password-link">Şifremi Unuttum?</a>
+                    <button type="submit" class="btn-primary" id="login-submit-btn">GİRİŞ YAP</button>
+                </form>
+
+                <!-- Register Form -->
+                <form class="auth-form hidden" id="register-form">
+                    <p class="auth-subtitle">Yeni hesap oluşturun</p>
+                    <div class="input-group" id="register-name-group">
+                        <input type="text" id="register-name" placeholder="Ad Soyad" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div class="input-group" id="register-email-group">
+                        <input type="email" id="register-email" placeholder="E-Posta Adresi" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    <div class="input-group" id="register-password-group">
+                        <input type="password" id="register-password" placeholder="Şifre" required>
+                        <button type="button" class="password-toggle" id="register-password-toggle" aria-label="Şifreyi göster">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
+                    </div>
+                    <div class="input-group" id="register-password-confirm-group">
+                        <input type="password" id="register-password-confirm" placeholder="Şifre Tekrar" required>
+                        <button type="button" class="password-toggle" id="register-password-confirm-toggle" aria-label="Şifreyi göster">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
+                    </div>
+                    <div class="checkbox-group" id="terms-checkbox-group">
+                        <input type="checkbox" id="terms-checkbox" required>
+                        <label for="terms-checkbox"><a href="#">Kullanım Koşulları</a>'nı okudum ve kabul ediyorum.</label>
+                    </div>
+                    <button type="submit" class="btn-primary" id="register-submit-btn">KAYIT OL</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="main-footer">
+        <div class="footer-inner">
+            <p class="footer-copy">&copy; 2026 Tekirdağ Spor Tesisleri A.Ş. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="#" id="footer-terms">Kullanım Koşulları</a>
+                <a href="#" id="footer-privacy">Gizlilik Politikası</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" id="social-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="csv-data.js?v=2"></script>
+    <script src="data-structures.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>

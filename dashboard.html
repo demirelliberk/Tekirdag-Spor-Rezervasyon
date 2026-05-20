@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tekirdağ Spor Rezervasyon Sistemi - Ana Sayfa">
+    <title>Tekirdağ Spor Rezervasyon Sistemi - Ana Sayfa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header scrolled" id="main-header">
+        <div class="header-inner">
+            <a href="dashboard.html" class="logo" id="logo-link">
+                <img src="logo.png" alt="Tekirdağ Spor Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">TEKİRDAĞ SPOR</span>
+                    <span class="logo-subtitle">REZERVASYON SİSTEMİ</span>
+                </div>
+            </a>
+            <nav class="nav" id="main-nav">
+                <a href="dashboard.html" class="nav-link active" id="nav-home">Ana Sayfa</a>
+                <a href="#facilities" class="nav-link" id="nav-facilities">Tesisler</a>
+                <a href="#services" class="nav-link" id="nav-services">Hizmetler</a>
+                <a href="#contact" class="nav-link" id="nav-contact">İletişim</a>
+                <div class="user-menu" id="user-menu">
+                    <button class="user-menu-btn" id="user-menu-btn">
+                        <div class="user-avatar" id="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name" id="user-display-name">Kullanıcı</span>
+                        <i class="fas fa-chevron-down user-arrow"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="dropdown-header">
+                            <p class="dropdown-name" id="dropdown-name">Ad Soyad</p>
+                            <p class="dropdown-email" id="dropdown-email">email@example.com</p>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="dropdown-profile">
+                            <i class="fas fa-user-edit"></i> Profilim
+                        </a>
+                        <a href="rezervasyonlarim.html" class="dropdown-item" id="dropdown-reservations">
+                            <i class="fas fa-calendar-alt"></i> Rezervasyonlarım
+                        </a>
+                        <a href="admin.html" class="dropdown-item" id="dropdown-admin">
+                            <i class="fas fa-database"></i> Yönetim Paneli
+                        </a>
+                        <a href="#" class="dropdown-item" id="dropdown-settings">
+                            <i class="fas fa-cog"></i> Ayarlar
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item logout" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Menü">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Welcome Banner -->
+    <section class="welcome-banner" id="welcome-banner">
+        <div class="welcome-bg-overlay"></div>
+        <div class="welcome-content">
+            <h1 id="welcome-title">Hoş Geldiniz!</h1>
+            <p class="welcome-desc">Tekirdağ'daki spor tesislerini keşfedin ve hemen rezervasyon yapın.</p>
+            <div class="welcome-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-facilities">6</span>
+                    <span class="stat-label">Spor Tesisi</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-sports">6</span>
+                    <span class="stat-label">Spor Dalı</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-members">0</span>
+                    <span class="stat-label">Aktif Üye</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-total-res">0</span>
+                    <span class="stat-label">Rezervasyon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="section" id="facilities">
+        <div class="section-inner">
+            <h2 class="section-title">
+                <i class="fas fa-map-marker-alt"></i>
+                Spor Tesisleri
+            </h2>
+            <p class="section-desc">Tekirdağ genelindeki spor komplekslerinin tesisleri — CSV verilerinden yüklendi</p>
+
+            <div class="facilities-grid" id="facilities-grid">
+                <!-- JS tarafından dinamik olarak doldurulacak -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Veri Yapıları Paneli (Sadece Admin) -->
+    <section class="section ds-section" id="data-structures" style="display: none;">
+        <div class="section-inner">
+            <h2 class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                Veri Yapıları Paneli
+            </h2>
+            <p class="section-desc">Bekleme kuyruğu, iptal geçmişi ve rezervasyon durumlarını takip edin</p>
+
+            <div class="ds-grid">
+                <!-- Bekleme Kuyruğu (Queue) -->
+                <div class="ds-card" id="ds-queue-card">
+                    <div class="ds-card-header queue-header">
+                        <div class="ds-card-icon"><i class="fas fa-users-cog"></i></div>
+                        <div>
+                            <h3>Bekleme Kuyruğu</h3>
+                            <span class="ds-badge" id="queue-count">0 kişi</span>
+                        </div>
+                    </div>
+                    <p class="ds-card-desc">Dolu saatlerde sıraya giren kullanıcılar (FIFO — İlk gelen ilk çıkar)</p>
+                    <div class="ds-list" id="queue-list">
+                        <p class="ds-empty"><i class="fas fa-inbox"></i> Kuyrukta bekleyen yok</p>
+                    </div>
+                    <div class="ds-card-footer">
+                        <button class="ds-btn" id="btn-dequeue" disabled><i class="fas fa-user-check"></i> Sıradakini Al</button>
+                        <button class="ds-btn outline" id="btn-clear-queue" disabled><i class="fas fa-broom"></i> Temizle</button>
+                    </div>
+                </div>
+
+                <!-- İptal Yığını (Stack) -->
+                <div class="ds-card" id="ds-stack-card">
+                    <div class="ds-card-header stack-header">
+                        <div class="ds-card-icon"><i class="fas fa-history"></i></div>
+                        <div>
+                            <h3>İptal Geçmişi</h3>
+                            <span class="ds-badge" id="stack-count">0 iptal</span>
+                        </div>
+                    </div>
+                    <p class="ds-card-desc">İptal edilen rezervasyonlar (LIFO — Son iptal geri alınır)</p>
+                    <div class="ds-list" id="stack-list">
+                        <p class="ds-empty"><i class="fas fa-inbox"></i> İptal geçmişi boş</p>
+                    </div>
+                    <div class="ds-card-footer">
+                        <button class="ds-btn" id="btn-undo-cancel" disabled><i class="fas fa-undo"></i> Son İptali Geri Al</button>
+                        <button class="ds-btn outline" id="btn-clear-stack" disabled><i class="fas fa-broom"></i> Temizle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Modal -->
+    <div class="modal-overlay" id="reservation-modal">
+        <div class="modal" id="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+            <h2 class="modal-title" id="modal-title">Rezervasyon Yap</h2>
+            <p class="modal-subtitle" id="modal-subtitle">Tesis Adı</p>
+
+            <div class="modal-tabs">
+                <button class="modal-tab active" id="tab-res-form-btn">Rezervasyon Formu</button>
+                <button class="modal-tab" id="tab-res-reviews-btn">Değerlendirmeler</button>
+            </div>
+
+            <form id="reservation-form" class="reservation-form tab-content active">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="res-date"><i class="fas fa-calendar"></i> Tarih</label>
+                        <input type="date" id="res-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="res-time"><i class="fas fa-clock"></i> Başlangıç Saati</label>
+                        <select id="res-time" required>
+                            <option value="">Saat seçin</option>
+                            <!-- JS tarafından dinamik olarak doldurulacak -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-half"></i> Süre</label>
+                        <div style="padding: 12px 14px; background: var(--input-bg); border: 1.5px solid var(--input-border); border-radius: var(--border-radius-sm); font-size: 0.88rem; color: var(--text-muted);">
+                            1 Saat (Sabit)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="res-people"><i class="fas fa-users"></i> Kişi Sayısı</label>
+                        <input type="number" id="res-people" min="1" max="30" value="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="res-notes"><i class="fas fa-sticky-note"></i> Notlar (Opsiyonel)</label>
+                    <textarea id="res-notes" rows="3" placeholder="Ek bilgi veya isteklerinizi yazın..."></textarea>
+                </div>
+
+                <div class="reservation-summary" id="reservation-summary">
+                    <div class="summary-row">
+                        <span>Toplam Tutar:</span>
+                        <span class="summary-price" id="summary-price">₺250</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="confirm-reservation-btn">
+                    <i class="fas fa-check-circle"></i> Rezervasyonu Onayla
+                </button>
+            </form>
+
+            <div id="facility-reviews-container" class="tab-content">
+                <div class="reviews-grid" id="modal-reviews-grid" style="grid-template-columns: 1fr; gap: 15px;">
+                    <!-- JS tarafından dinamik doldurulacak -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="main-footer">
+        <div class="footer-inner">
+            <p class="footer-copy">&copy; 2026 Tekirdağ Spor Tesisleri A.Ş. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="#" id="footer-terms">Kullanım Koşulları</a>
+                <a href="#" id="footer-privacy">Gizlilik Politikası</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" id="social-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="csv-data.js?v=2"></script>
+    <script src="data-structures.js?v=2"></script>
+    <script src="dashboard.js?v=2"></script>
+</body>
+</html>

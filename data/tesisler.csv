@@ -1,0 +1,11 @@
+tesisId,kompleksId,tesisAdi,tesisTuru,kapasite,ucretSaatlik,durum,gorselUrl
+1,101,Namık Kemal Stadı Sahası,Futbol,500,100,Aktif,/data/images/1779219550_stad-1.jpeg
+2,102,Çorlu Atatürk Spor Salonu,Basketbol,200,80,Aktif,/data/images/1779220356_görsel_2026-05-19_225236055.png
+3,103,Süleymanpaşa Yüzme Havuzu,Yuzme,250,90,Aktif,/data/images/1779220369_görsel_2026-05-19_225248521.png
+4,104,Çerkezköy Kapalı Saha,Futbol,400,120,Aktif,/data/images/1779220392_görsel_2026-05-19_225311783.png
+5,105,Ergene Tenis Kortları,Tenis,300,70,Aktif,/data/images/1779220452_görsel_2026-05-19_225412430.png
+6,106,Malkara Voleybol Alanı,Voleybol,150,60,Aktif,/data/images/1779220516_görsel_2026-05-19_225516020.png
+7,107,Saray Güreş Sahası,Gures,100,85,Aktif,/data/images/1779220801_görsel_2026-05-19_230000094.png
+8,108,Hayrabolu Fitness Merkezi,Fitness,120,76,Bakimda,https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop
+9,101,Namık Kemal Atletizm Pisti,Kosu,0,50,Aktif,/data/images/1779220658_görsel_2026-05-19_225730652.png
+10,105,Ergene Padel Kortu,Tenis,350,65,Aktif,/data/images/1779220870_görsel_2026-05-19_230109172.png

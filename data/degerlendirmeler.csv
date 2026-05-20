@@ -1,0 +1,11 @@
+degerlendirmeId,kullaniciId,kompleksId,puan,yorum,tarih
+1,2,101,5,Harika bir saha!,2026-05-06
+2,3,102,4,Çok güzel bir kompleks.,2026-05-07
+3,4,103,3,Orta düzeyde bir tesis.,2026-05-08
+4,2,104,2,Temizlik konusunda sorun var.,2026-05-09
+5,3,105,5,Mükemmel tenis kortları!,2026-05-10
+6,4,106,4,İyi bir voleybol alanı.,2026-05-11
+7,2,107,3,Güzel bir güreş sahası.,2026-05-12
+8,3,108,2,Fitness merkezi biraz eski.,2026-05-13
+9,4,101,5,Atletizm pistini çok beğendim!,2026-05-14
+10,2,105,4,Padel kartları harika!,2026-05-15

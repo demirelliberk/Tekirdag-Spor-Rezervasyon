@@ -1,0 +1,595 @@
+/* ===========================
+   Rezervasyonlarım Page Styles
+   =========================== */
+
+.rez-main {
+    padding-top: calc(var(--header-height) + 20px);
+    min-height: 100vh;
+    background: var(--dark);
+}
+
+/* --- Page Header --- */
+
+.rez-page-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 40px 0;
+}
+
+.rez-page-header-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.rez-page-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.rez-page-title i {
+    color: var(--accent);
+}
+
+.rez-page-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.rez-new-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--gradient-btn);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-primary);
+    text-decoration: none;
+}
+
+.rez-new-btn:hover {
+    background: var(--gradient-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 196, 255, 0.3);
+}
+
+/* --- Stats Row --- */
+
+.rez-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.rez-stat-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-card-border);
+    border-radius: var(--border-radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: var(--transition);
+}
+
+.rez-stat-card:hover {
+    border-color: rgba(0, 196, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.rez-stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.rez-stat-icon.active-icon { background: rgba(0, 196, 255, 0.12); color: #00c4ff; }
+.rez-stat-icon.pending-icon { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+.rez-stat-icon.completed-icon { background: rgba(34, 197, 94, 0.12); color: #22c55e; }
+.rez-stat-icon.cancelled-icon { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+.rez-stat-icon.total-icon { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
+
+.rez-stat-number {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.rez-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+/* --- Tabs --- */
+
+.rez-tabs {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    overflow-x: auto;
+}
+
+.rez-tab {
+    padding: 14px 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-primary);
+    white-space: nowrap;
+}
+
+.rez-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px 3px 0 0;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.rez-tab.active {
+    color: var(--white);
+}
+
+.rez-tab.active::after {
+    opacity: 1;
+}
+
+.rez-tab:hover:not(.active) {
+    color: var(--text-secondary);
+}
+
+.rez-tab-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+}
+
+.rez-tab.active .rez-tab-badge {
+    background: rgba(0, 196, 255, 0.15);
+    color: var(--accent);
+}
+
+/* --- Reservation List --- */
+
+.rez-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* --- Reservation Card --- */
+
+.rez-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-card-border);
+    border-radius: var(--border-radius);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.rez-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+.rez-card.status-confirmed::before { background: #22c55e; }
+.rez-card.status-pending::before { background: #fbbf24; }
+.rez-card.status-cancelled::before { background: #ef4444; }
+.rez-card.status-completed::before { background: #8b5cf6; }
+
+.rez-card:hover {
+    border-color: rgba(0, 196, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Card icon */
+.rez-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.rez-card-icon.football-bg { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.rez-card-icon.basketball-bg { background: linear-gradient(135deg, #f97316, #ea580c); }
+.rez-card-icon.pool-bg { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+.rez-card-icon.tennis-bg { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.rez-card-icon.volleyball-bg { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.rez-card-icon.gym-bg { background: linear-gradient(135deg, #a855f7, #9333ea); }
+
+/* Card info */
+.rez-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.rez-card-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+}
+
+.rez-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.rez-card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rez-card-meta i {
+    color: var(--accent);
+    font-size: 0.78rem;
+}
+
+/* Card right side */
+.rez-card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.rez-card-price {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.rez-card-status {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rez-card-status.confirmed {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.rez-card-status.pending {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.rez-card-status.cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.rez-card-status.completed {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.rez-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.rez-btn-cancel {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-primary);
+}
+
+.rez-btn-cancel:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.rez-card-id {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'Consolas', monospace;
+    opacity: 0.7;
+}
+
+/* --- Empty State --- */
+
+.rez-empty {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.rez-empty.hidden {
+    display: none;
+}
+
+.rez-empty i {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.08);
+    margin-bottom: 20px;
+}
+
+.rez-empty h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.rez-empty p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.rez-empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--gradient-btn);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-primary);
+    text-decoration: none;
+}
+
+.rez-empty-btn:hover {
+    background: var(--gradient-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 196, 255, 0.3);
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 768px) {
+    .rez-page-header {
+        padding: 20px 20px 0;
+    }
+
+    .rez-page-title {
+        font-size: 1.3rem;
+    }
+
+    .rez-page-header-inner {
+        flex-direction: column;
+    }
+
+    .rez-new-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .rez-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rez-tabs {
+        padding: 0 20px;
+    }
+
+    .rez-list {
+        padding: 20px 20px 40px;
+    }
+
+    .rez-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .rez-card-right {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .rez-empty {
+        padding: 60px 20px;
+    }
+}
+
+/* ===========================
+   Değerlendirme Modal Stilleri
+   =========================== */
+
+.review-star-select {
+    margin-bottom: 20px;
+}
+
+.review-star-select label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.star-picker {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.star-picker i {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.star-picker i:hover,
+.star-picker i.active {
+    color: #fbbf24;
+    transform: scale(1.15);
+}
+
+.star-picker i.hover-fill {
+    color: #fbbf24;
+}
+
+.star-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.review-comment-group {
+    margin-bottom: 20px;
+}
+
+.review-comment-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.review-comment-group label i {
+    color: var(--accent);
+    margin-right: 6px;
+}
+
+.review-comment-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--input-bg);
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.88rem;
+    color: var(--white);
+    font-family: var(--font-primary);
+    transition: var(--transition);
+    resize: vertical;
+}
+
+.review-comment-group textarea:focus {
+    border-color: var(--input-focus);
+    background: rgba(0, 196, 255, 0.04);
+    box-shadow: 0 0 0 3px rgba(0, 196, 255, 0.08);
+    outline: none;
+}
+
+.review-comment-group textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* Değerlendir butonu (kartlardaki) */
+.rez-btn-review {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-primary);
+}
+
+.rez-btn-review:hover {
+    background: rgba(251, 191, 36, 0.2);
+}
+
+.rez-btn-reviewed {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 6px;
+    cursor: default;
+    font-family: var(--font-primary);
+}

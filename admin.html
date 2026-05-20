@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tekirdağ Spor Rezervasyon Sistemi - Yönetim Paneli">
+    <title>Tekirdağ Spor Rezervasyon Sistemi - Yönetim Paneli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header scrolled" id="main-header">
+        <div class="header-inner">
+            <a href="dashboard.html" class="logo" id="logo-link">
+                <img src="logo.png" alt="Tekirdağ Spor Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">TEKİRDAĞ SPOR</span>
+                    <span class="logo-subtitle">REZERVASYON SİSTEMİ</span>
+                </div>
+            </a>
+            <nav class="nav" id="main-nav">
+                <a href="dashboard.html" class="nav-link" id="nav-home">Ana Sayfa</a>
+                <a href="admin.html" class="nav-link active" id="nav-admin">Yönetim Paneli</a>
+                <a href="index.html" class="nav-link" id="nav-logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Çıkış
+                </a>
+            </nav>
+            <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Menü">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Admin Content -->
+    <main class="admin-main" id="admin-main">
+
+        <!-- Page Title -->
+        <div class="admin-header-section">
+            <div class="admin-title-row">
+                <div>
+                    <h1 class="admin-title"><i class="fas fa-database"></i> Veritabanı Yönetim Paneli</h1>
+                    <p class="admin-desc">Tüm kullanıcı ve rezervasyon kayıtlarını görüntüleyin, SQL olarak dışa aktarın.</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn-action export" id="btn-export-csv">
+                        <i class="fas fa-file-csv"></i> CSV İndir
+                    </button>
+                    <button class="btn-action export" id="btn-export-json">
+                        <i class="fas fa-file-code"></i> JSON İndir
+                    </button>
+                    <button class="btn-action export" id="btn-export-sql">
+                        <i class="fas fa-file-export"></i> SQL İndir
+                    </button>
+                    <button class="btn-action refresh" id="btn-refresh">
+                        <i class="fas fa-sync-alt"></i> Yenile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-row" id="stats-row">
+                <div class="stat-card">
+                    <div class="stat-card-icon users-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <p class="stat-card-number" id="stat-users">0</p>
+                        <p class="stat-card-label">Kayıtlı Kullanıcı</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon res-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div>
+                        <p class="stat-card-number" id="stat-reservations">0</p>
+                        <p class="stat-card-label">Toplam Rezervasyon</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon revenue-icon"><i class="fas fa-lira-sign"></i></div>
+                    <div>
+                        <p class="stat-card-number" id="stat-revenue">₺0</p>
+                        <p class="stat-card-label">Toplam Gelir</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon active-icon"><i class="fas fa-user-check"></i></div>
+                    <div>
+                        <p class="stat-card-number" id="stat-active-sessions">0</p>
+                        <p class="stat-card-label">Aktif Oturum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-tabs" id="admin-tabs">
+            <button class="admin-tab active" data-tab="users" id="tab-users">
+                <i class="fas fa-users"></i> Kullanıcılar
+            </button>
+            <button class="admin-tab" data-tab="kompleksler" id="tab-kompleksler">
+                <i class="fas fa-city"></i> Kompleksler
+            </button>
+            <button class="admin-tab" data-tab="facilities" id="tab-facilities">
+                <i class="fas fa-building"></i> Tesisler
+            </button>
+            <button class="admin-tab" data-tab="reservations" id="tab-reservations">
+                <i class="fas fa-calendar-alt"></i> Rezervasyonlar
+            </button>
+            <button class="admin-tab" data-tab="degerlendirmeler" id="tab-degerlendirmeler">
+                <i class="fas fa-star"></i> Değerlendirmeler
+            </button>
+            <button class="admin-tab" data-tab="sql-preview" id="tab-sql-preview">
+                <i class="fas fa-code"></i> SQL Önizleme
+            </button>
+        </div>
+
+        <!-- Users Table -->
+        <div class="admin-panel-content" id="panel-users">
+            <div class="table-header">
+                <h2><i class="fas fa-table"></i> kullanicilar Tablosu</h2>
+                <div class="table-actions">
+                    <input type="text" class="search-input" id="search-users" placeholder="Kullanıcı ara...">
+                    <button class="btn-action danger small" id="btn-clear-users">
+                        <i class="fas fa-trash"></i> Tümünü Sil
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="users-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad Soyad</th>
+                            <th>E-Posta</th>
+                            <th>Rol</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-tbody">
+                        <!-- JS ile doldurulacak -->
+                    </tbody>
+                </table>
+            </div>
+            <p class="empty-message hidden" id="users-empty">
+                <i class="fas fa-inbox"></i> Henüz kayıtlı kullanıcı yok.
+            </p>
+        </div>
+
+        <!-- Reservations Table -->
+        <div class="admin-panel-content hidden" id="panel-reservations">
+            <div class="table-header">
+                <h2><i class="fas fa-table"></i> rezervasyonlar Tablosu</h2>
+                <div class="table-actions">
+                    <input type="text" class="search-input" id="search-reservations" placeholder="Rezervasyon ara...">
+                    <button class="btn-action danger small" id="btn-clear-reservations">
+                        <i class="fas fa-trash"></i> Tümünü Sil
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="reservations-table">
+                    <thead>
+                        <tr>
+                            <th>Rez. No</th>
+                            <th>Kullanıcı</th>
+                            <th>Tesis</th>
+                            <th>Tarih</th>
+                            <th>Saat</th>
+                            <th>Süre</th>
+                            <th>Kişi</th>
+                            <th>Tutar</th>
+                            <th>Durum</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-tbody">
+                        <!-- JS ile doldurulacak -->
+                    </tbody>
+                </table>
+            </div>
+            <p class="empty-message hidden" id="reservations-empty">
+                <i class="fas fa-inbox"></i> Henüz rezervasyon yok.
+            </p>
+        </div>
+
+        <!-- SQL Preview -->
+        <div class="admin-panel-content hidden" id="panel-sql-preview">
+            <div class="table-header">
+                <h2><i class="fas fa-code"></i> SQL Çıktısı Önizleme</h2>
+                <div class="table-actions">
+                    <button class="btn-action export small" id="btn-copy-sql">
+                        <i class="fas fa-copy"></i> Kopyala
+                    </button>
+                    <button class="btn-action export small" id="btn-download-sql-preview">
+                        <i class="fas fa-download"></i> .sql İndir
+                    </button>
+                </div>
+            </div>
+            <pre class="sql-preview-code" id="sql-preview-code">-- Yükleniyor...</pre>
+        </div>
+
+        <!-- Facilities Table -->
+        <div class="admin-panel-content hidden" id="panel-facilities">
+            <div class="table-header">
+                <h2><i class="fas fa-building"></i> Tesis Yönetimi</h2>
+                <div class="table-actions">
+                    <button class="btn-action export small" id="btn-add-facility">
+                        <i class="fas fa-plus"></i> Yeni Tesis Ekle
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="facilities-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>İkon</th>
+                            <th>Tesis Adı</th>
+                            <th>Konum</th>
+                            <th>Spor Dalı</th>
+                            <th>Fiyat</th>
+                            <th>Çalışma Saati</th>
+                            <th>Durum</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="facilities-tbody">
+                    </tbody>
+                </table>
+            </div>
+            <p class="empty-message hidden" id="facilities-empty">
+                <i class="fas fa-inbox"></i> Henüz tesis eklenmemiş.
+            </p>
+        </div>
+
+        <!-- Kompleksler Table -->
+        <div class="admin-panel-content hidden" id="panel-kompleksler">
+            <div class="table-header">
+                <h2><i class="fas fa-city"></i> Spor Kompleksleri</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="kompleksler-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kompleks Adı</th>
+                            <th>İlçe</th>
+                            <th>Adres</th>
+                            <th>Açılış</th>
+                            <th>Kapanış</th>
+                            <th>Tesis Sayısı</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kompleksler-tbody"></tbody>
+                </table>
+            </div>
+            <p class="empty-message hidden" id="kompleksler-empty">
+                <i class="fas fa-inbox"></i> Kompleks verisi yok.
+            </p>
+        </div>
+
+        <!-- Degerlendirmeler Table -->
+        <div class="admin-panel-content hidden" id="panel-degerlendirmeler">
+            <div class="table-header">
+                <h2><i class="fas fa-star"></i> Değerlendirmeler</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table" id="degerlendirmeler-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kullanıcı</th>
+                            <th>Kompleks</th>
+                            <th>Puan</th>
+                            <th>Yorum</th>
+                            <th>Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody id="degerlendirmeler-tbody"></tbody>
+                </table>
+            </div>
+            <p class="empty-message hidden" id="degerlendirmeler-empty">
+                <i class="fas fa-inbox"></i> Değerlendirme verisi yok.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Tesis Ekle/Düzenle Modal -->
+    <div class="modal-overlay" id="facility-modal">
+        <div class="modal fac-modal">
+            <button class="modal-close" id="facility-modal-close"><i class="fas fa-times"></i></button>
+            <h2 class="modal-title" id="facility-modal-title">Yeni Tesis Ekle</h2>
+            <p class="modal-subtitle" id="facility-modal-subtitle">Sisteme yeni bir spor tesisi tanımlayın</p>
+
+            <form id="facility-form" class="fac-form">
+                <input type="hidden" id="fac-edit-id">
+
+                <!-- Tesis Adı & Spor Dalı -->
+                <div class="fac-form-row">
+                    <div class="fac-form-group">
+                        <label for="fac-name"><i class="fas fa-tag"></i> Tesis Adı</label>
+                        <input type="text" id="fac-name" required placeholder="Örn: Hayrabolu Spor Salonu">
+                    </div>
+                    <div class="fac-form-group">
+                        <label for="fac-sport"><i class="fas fa-running"></i> Spor Dalı</label>
+                        <input type="text" id="fac-sport" required placeholder="Örn: Basketbol">
+                    </div>
+                </div>
+
+                <!-- Kompleks ve Konum -->
+                <div class="fac-form-row">
+                    <div class="fac-form-group">
+                        <label for="fac-kompleks"><i class="fas fa-city"></i> Spor Kompleksi</label>
+                        <select id="fac-kompleks" required>
+                            <!-- Dinamik doldurulacak -->
+                        </select>
+                    </div>
+                    <div class="fac-form-group">
+                        <label for="fac-location"><i class="fas fa-map-pin"></i> Konum</label>
+                        <input type="text" id="fac-location" readonly required placeholder="İlçe, Tekirdağ">
+                    </div>
+                </div>
+
+                <!-- Ücret & Çalışma Saatleri -->
+                <div class="fac-form-row">
+                    <div class="fac-form-group">
+                        <label for="fac-price"><i class="fas fa-lira-sign"></i> Saatlik Ücret (₺)</label>
+                        <input type="number" id="fac-price" min="1" required placeholder="200">
+                    </div>
+                    <div class="fac-form-group">
+                        <label for="fac-hours"><i class="fas fa-clock"></i> Çalışma Saatleri</label>
+                        <input type="text" id="fac-hours" required placeholder="08:00 - 22:00">
+                    </div>
+                </div>
+
+                <!-- Görsel Yükleme -->
+                <div class="fac-form-group" style="margin-bottom: 1rem;">
+                    <label for="fac-image-upload"><i class="fas fa-image"></i> Tesis Görseli Yükle (İsteğe Bağlı)</label>
+                    <input type="file" id="fac-image-upload" accept="image/*" style="width: 100%; padding: 0.5rem; background: var(--dark-bg); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-color);">
+                    <input type="hidden" id="fac-image-url">
+                </div>
+
+                <!-- İkon & Renk Teması -->
+                <div class="fac-form-row">
+                    <div class="fac-form-group">
+                        <label for="fac-icon"><i class="fas fa-icons"></i> Tesis İkonu</label>
+                        <select id="fac-icon">
+                            <option value="fas fa-futbol">⚽ Futbol</option>
+                            <option value="fas fa-basketball-ball">🏀 Basketbol</option>
+                            <option value="fas fa-volleyball-ball">🏐 Voleybol</option>
+                            <option value="fas fa-table-tennis-paddle-ball">🏓 Tenis</option>
+                            <option value="fas fa-swimmer">🏊 Yüzme</option>
+                            <option value="fas fa-dumbbell">🏋️ Fitness</option>
+                            <option value="fas fa-running">🏃 Koşu</option>
+                            <option value="fas fa-biking">🚴 Bisiklet</option>
+                            <option value="fas fa-skating">⛸️ Buz Pateni</option>
+                            <option value="fas fa-chess">♟️ Satranç</option>
+                        </select>
+                    </div>
+                    <div class="fac-form-group">
+                        <label for="fac-color"><i class="fas fa-palette"></i> Renk Teması</label>
+                        <select id="fac-color">
+                            <option value="football-bg">🟢 Yeşil</option>
+                            <option value="tennis-bg">🔴 Kırmızı</option>
+                            <option value="pool-bg">🔵 Mavi</option>
+                            <option value="basketball-bg">🟤 Kahverengi</option>
+                            <option value="gym-bg">🟣 Mor</option>
+                            <option value="volleyball-bg">⚪ Gri</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Önizleme -->
+                <div class="fac-preview-box" id="fac-preview-box">
+                    <div class="fac-preview-icon" id="fac-preview-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="fac-preview-info">
+                        <span class="fac-preview-name" id="fac-preview-name">Tesis Adı</span>
+                        <span class="fac-preview-meta" id="fac-preview-meta">Konum · Spor Dalı</span>
+                    </div>
+                </div>
+
+                <!-- Kaydet Butonu -->
+                <button type="submit" class="fac-save-btn" id="facility-save-btn">
+                    <i class="fas fa-save"></i> Tesisi Kaydet
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="main-footer">
+        <div class="footer-inner">
+            <p class="footer-copy">&copy; 2026 Tekirdağ Spor Tesisleri A.Ş. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="#" id="footer-terms">Kullanım Koşulları</a>
+                <a href="#" id="footer-privacy">Gizlilik Politikası</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" id="social-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="csv-data.js?v=2"></script>
+    <script src="data-structures.js?v=2"></script>
+    <script src="admin.js?v=2"></script>
+</body>
+</html>
